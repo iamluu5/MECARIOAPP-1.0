@@ -95,10 +95,10 @@ final class InvoicePdfService
         }
         $html .= '</tbody></table><br>';
         $html .= '<table class="totals" cellpadding="5">'
-            . '<tr><td width="70%"></td><td><b>Subtotal:</b></td><td class="right">$' . number_format((float)$venta['subtotal'], 2) . '</td></tr>'
-            . '<tr><td></td><td><b>ITBMS (7%):</b></td><td class="right">$' . number_format((float)$venta['itbms'], 2) . '</td></tr>'
-            . '<tr><td></td><td><b>Entrega:</b></td><td class="right">$' . number_format((float)$venta['costo_entrega'], 2) . '</td></tr>'
-            . '<tr><td></td><td><b>TOTAL:</b></td><td class="right"><b>$' . number_format((float)$venta['total'], 2) . '</b></td></tr></table>';
+            . '<tr><td width="60%"></td><td width="22%"><b>Subtotal:</b></td><td width="18%" class="right">$' . number_format((float)$venta['subtotal'], 2) . '</td></tr>'
+            . '<tr><td width="60%"></td><td width="22%"><b>ITBMS (7%):</b></td><td width="18%" class="right">$' . number_format((float)$venta['itbms'], 2) . '</td></tr>'
+            . '<tr><td width="60%"></td><td width="22%"><b>Entrega:</b></td><td width="18%" class="right">$' . number_format((float)$venta['costo_entrega'], 2) . '</td></tr>'
+            . '<tr><td width="60%"></td><td width="22%"><b>TOTAL:</b></td><td width="18%" class="right"><b>$' . number_format((float)$venta['total'], 2) . '</b></td></tr></table>';
 
         if (($venta['metodo_entrega'] ?? 'retiro') === 'delivery') {
             $html .= '<p><b>Dirección de entrega:</b> ' . $this->e((string)$venta['direccion_entrega']) . '<br><b>Contacto:</b> ' . $this->e((string)$venta['telefono_entrega']) . '</p>';
