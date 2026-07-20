@@ -1,0 +1,14 @@
+{
+    "name": "equipo/mecario",
+    "description": "Sistema Mecario para inventario, venta y facturación de partes automotrices.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "php": ">=8.2",
+        "tecnickcom/tcpdf": "^7.0"
+    }
+}

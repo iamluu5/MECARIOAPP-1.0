@@ -1,0 +1,12 @@
+# Impide que Apache muestre listados de carpetas.
+Options -Indexes
+
+# Activa las rutas limpias mediante el módulo rewrite_module de Apache.
+RewriteEngine On
+
+# Los archivos y carpetas reales se sirven normalmente.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Cualquier otra ruta se envía a public/index.php.
+RewriteRule ^(.+)$ index.php [QSA,L]

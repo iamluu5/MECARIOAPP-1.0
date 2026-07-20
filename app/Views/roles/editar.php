@@ -1,0 +1,2 @@
+<?php use App\Helpers\Sanitizer; use App\Helpers\Url; ?>
+<main class="container"><section class="module-hero"><div><span class="eyebrow">Control de acceso</span><h1>Editar rol</h1><p>Actualiza el nombre, estado y permisos del rol.</p></div><a class="btn btn-secundario" href="<?= Sanitizer::html(Url::ruta('/roles')) ?>">Volver</a></section><?php $modo='editar'; $action='/roles/actualizar/'.$rol['id']; require __DIR__.'/formulario.php'; ?></main>

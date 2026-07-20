@@ -1,0 +1,37 @@
+# Archivos generados por Windows
+Thumbs.db
+Desktop.ini
+
+# Archivos generados por macOS
+.DS_Store
+
+# Logs generados por la aplicación
+storage/logs/*.log
+
+# Imágenes cargadas dinámicamente desde los formularios
+uploads/thumbnails/*
+uploads/grandes/*
+
+# Mantener las carpetas vacías en el repositorio
+!uploads/thumbnails/.gitkeep
+!uploads/grandes/.gitkeep
+!storage/logs/.gitkeep
+
+# Configuración sensible local
+.env
+.env.*
+
+# Dependencias generadas por Composer
+/vendor/
+
+# Archivos temporales o copias de seguridad
+*.tmp
+*.bak
+# Material criptográfico y facturas generadas localmente
+storage/keys/*.pem
+storage/certificates/*.pem
+storage/certificates/*.crt
+storage/facturas/*.pdf
+!storage/keys/.gitkeep
+!storage/certificates/.gitkeep
+!storage/facturas/.gitkeep

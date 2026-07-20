@@ -1,0 +1,2 @@
+<?php use App\Helpers\Sanitizer; use App\Helpers\Url; ?>
+<main class="container"><section class="module-hero"><div><span class="eyebrow">Control de acceso</span><h1>Crear rol</h1><p>Crea un perfil de acceso y asigna sus permisos.</p></div><a class="btn btn-secundario" href="<?= Sanitizer::html(Url::ruta('/roles')) ?>">Volver</a></section><?php $modo='crear'; $action='/roles/guardar'; require __DIR__.'/formulario.php'; ?></main>
