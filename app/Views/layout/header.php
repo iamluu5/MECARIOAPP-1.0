@@ -20,7 +20,7 @@ $usuarioSesion = Session::usuario();
 <header class="site-header">
     <div class="header-content">
         <a class="brand" href="<?= Sanitizer::html(Url::ruta('/')) ?>" aria-label="Mecario - Inicio">
-            <img class="brand-logo" src="<?= Sanitizer::html(Url::asset('img/mecario-logo.jpg')) ?>" alt="Mecario">
+            <img class="brand-logo" src="<?= Sanitizer::html(Url::asset('img/mecario-logo-transparent.png')) ?>" alt="Mecario">
         </a>
         <?php if ($usuarioSesion !== null): ?>
             <div class="user-info" aria-label="Usuario en sesión">
