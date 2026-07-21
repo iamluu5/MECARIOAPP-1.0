@@ -21,7 +21,6 @@ El sistema permite gestionar autos de origen, tipos de partes, secciones física
 | Franco Prieto   | 20-70-7514 | Base de datos y Gestión de la información |
 
 ### 1.3. Fecha y versión
-
 - **Versión:** v1.0.0
 - **Fecha de esta versión:** 20 de julio de 2026
 - **Estado:** versión académica funcional

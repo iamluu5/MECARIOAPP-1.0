@@ -3,17 +3,30 @@
 declare(strict_types=1);
 
 /**
- * FRONT CONTROLLER.
+ * ============================================================
+ * MECARIO - FRONT CONTROLLER
+ * ============================================================
  *
- * Este es el único archivo PHP al que Apache debe enviar
- * las rutas públicas.
+ * Este archivo es el punto de entrada principal del sistema.
  *
  * Flujo:
- * navegador -> public/index.php -> Router -> Controller -> Model/View
+ * Navegador
+ *    ↓
+ * public/index.php
+ *    ↓
+ * Router
+ *    ↓
+ * Controller
+ *    ↓
+ * Model / Service
+ *    ↓
+ * View
  */
 
 $raizProyecto = dirname(__DIR__);
-$autoloadComposer = $raizProyecto . '/vendor/autoload.php';
+
+$autoloadComposer =
+    $raizProyecto . '/vendor/autoload.php';
 
 
 /**
@@ -21,17 +34,20 @@ $autoloadComposer = $raizProyecto . '/vendor/autoload.php';
  * AUTOLOAD DE COMPOSER
  * ============================================================
  *
- * Si se ejecutó "composer install" se utiliza el autoload
- * generado por Composer.
- *
- * Si Composer no está disponible, se utiliza un cargador
- * PSR-4 sencillo únicamente para las clases App\.
+ * Carga todas las dependencias instaladas mediante Composer,
+ * incluyendo TCPDF y las librerías utilizadas por el proyecto.
  */
+
 if (is_file($autoloadComposer)) {
 
     require $autoloadComposer;
 
 } else {
+
+    /**
+     * Autoload alternativo para las clases App\
+     * en caso de que Composer no esté disponible.
+     */
 
     spl_autoload_register(
         static function (string $clase) use ($raizProyecto): void {
@@ -47,7 +63,8 @@ if (is_file($autoloadComposer)) {
                 strlen($prefijo)
             );
 
-            $archivo = $raizProyecto
+            $archivo =
+                $raizProyecto
                 . '/app/'
                 . str_replace(
                     '\\',
@@ -69,18 +86,16 @@ if (is_file($autoloadComposer)) {
  * CONFIGURACIÓN DE FUENTES TCPDF
  * ============================================================
  *
- * Las versiones modernas utilizadas por TCPDF 7 pueden
- * almacenar la información generada de las fuentes dentro de:
+ * Las fuentes generadas por tc-lib-pdf-font se encuentran
+ * dentro de:
  *
  * vendor/tecnickcom/tc-lib-pdf-font/target/fonts/
  *
- * Definimos K_PATH_FONTS para indicarle explícitamente
- * a TCPDF dónde debe buscar los archivos de fuentes.
- *
- * Esto debe ejecutarse ANTES de crear cualquier instancia
- * de TCPDF.
+ * K_PATH_FONTS indica a TCPDF dónde debe buscarlas.
  */
-$fontPath = $raizProyecto
+
+$fontPath =
+    $raizProyecto
     . '/vendor/tecnickcom/tc-lib-pdf-font/target/fonts';
 
 if (
@@ -92,23 +107,20 @@ if (
 
     if ($realFontPath !== false) {
 
-        /*
-         * Normalizamos las barras para que funcione correctamente
-         * tanto en Windows como en otros sistemas operativos.
-         */
+        // Normalizar las barras para Windows.
         $realFontPath = str_replace(
             '\\',
             '/',
             $realFontPath
         );
 
-        /*
-         * Aseguramos que la ruta termine con "/".
-         */
-        $realFontPath = rtrim(
-            $realFontPath,
-            '/'
-        ) . '/';
+        // Garantizar que la ruta termine en "/".
+        $realFontPath =
+            rtrim(
+                $realFontPath,
+                '/'
+            )
+            . '/';
 
         define(
             'K_PATH_FONTS',
@@ -120,7 +132,75 @@ if (
 
 /**
  * ============================================================
- * IMPORTAR CLASES PRINCIPALES
+ * RECURSOS INTERNOS DE TCPDF / TC-LIB-PDF
+ * ============================================================
+ *
+ * La generación de documentos PDF/A necesita recursos
+ * adicionales, entre ellos el perfil de color:
+ *
+ * sRGB.icc.z
+ *
+ * En la instalación actual se encuentra en:
+ *
+ * vendor/tecnickcom/tc-lib-pdf/src/include/
+ *
+ * K_ALLOWED_PATHS permite que TCPDF acceda a esta ubicación.
+ */
+
+$tcpdfIncludePath =
+    $raizProyecto
+    . '/vendor/tecnickcom/tc-lib-pdf/src/include';
+
+$invoiceStoragePath =
+    $raizProyecto
+    . '/storage';
+
+if (
+    !defined('K_ALLOWED_PATHS')
+    && is_dir($tcpdfIncludePath)
+) {
+
+    $realTcpdfIncludePath = realpath(
+        $tcpdfIncludePath
+    );
+
+    $realInvoiceStoragePath = realpath(
+        $invoiceStoragePath
+    );
+
+    if (
+        $realTcpdfIncludePath !== false
+        && $realInvoiceStoragePath !== false
+    ) {
+
+        $realTcpdfIncludePath =
+            str_replace(
+                '\\',
+                '/',
+                $realTcpdfIncludePath
+            );
+
+        $realInvoiceStoragePath =
+            str_replace(
+                '\\',
+                '/',
+                $realInvoiceStoragePath
+            );
+
+        define(
+            'K_ALLOWED_PATHS',
+            [
+                $realTcpdfIncludePath,
+                $realInvoiceStoragePath,
+            ]
+        );
+    }
+}
+
+
+/**
+ * ============================================================
+ * CLASES PRINCIPALES DEL SISTEMA
  * ============================================================
  */
 
@@ -131,11 +211,18 @@ use App\Core\Session;
 
 /**
  * ============================================================
- * CONFIGURAR EL SISTEMA
+ * CONTROL GLOBAL DE ERRORES
  * ============================================================
  */
 
 ErrorHandler::registrar();
+
+
+/**
+ * ============================================================
+ * INICIAR SESIÓN PHP
+ * ============================================================
+ */
 
 Session::iniciar();
 
@@ -151,14 +238,19 @@ $router = new Router();
 
 /**
  * ============================================================
- * CARGAR RUTAS
+ * CARGAR ARCHIVOS DE RUTAS
  * ============================================================
  *
- * Se cargan automáticamente todos los archivos PHP
- * existentes dentro de /routes.
+ * Cada módulo puede tener su propio archivo dentro de /routes.
  *
- * Gracias a esto, cada módulo puede tener su propio
- * archivo de rutas.
+ * Ejemplos:
+ *
+ * routes/auth.php
+ * routes/inventario.php
+ * routes/ventas.php
+ * routes/facturas.php
+ *
+ * Todos se cargan automáticamente.
  */
 
 $archivosRutas = glob(
@@ -182,7 +274,7 @@ foreach ($archivosRutas as $archivoRuta) {
 
 /**
  * ============================================================
- * EJECUTAR LA RUTA SOLICITADA
+ * EJECUTAR LA PETICIÓN
  * ============================================================
  */
 
