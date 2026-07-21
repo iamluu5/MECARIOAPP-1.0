@@ -15,10 +15,10 @@ El sistema permite gestionar autos de origen, tipos de partes, secciones física
 
 | Nombre completo | Cédula | Rol dentro del desarrollo |
 |---|---|---|
-| Luisa de Gracia | 8-1023-924 | Análisis / Backend / Frontend / Base de datos |
-| Yocelyn | Pendiente | Análisis / Backend / Frontend / Base de datos |
-| ... | Pendiente | Análisis / Backend / Frontend / Base de datos |
-| ... | Pendiente | Análisis / Backend / Frontend / Base de datos |
+| Luisa de Gracia | 8-1023-924 | Análisis del sistema, Base de Datos, Definición de requerimientos |
+| Joselyn Cención | 8-1024-804 | Frontend, Diseño visual y Estilos CSS |
+| Andrea Torrento | 20-23-7979 | Backend y Lógica del sistema |
+| Franco Prieto   | 20-70-7514 | Base de datos y Gestión de la información |
 
 ### 1.3. Fecha y versión
 
