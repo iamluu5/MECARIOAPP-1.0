@@ -12,7 +12,9 @@ storage/logs/*.log
 uploads/thumbnails/*
 uploads/grandes/*
 
-# Mantener las carpetas vacías en el repositorio
+# Mantener las imágenes de demostración y las carpetas en el repositorio
+!uploads/thumbnails/mec-*.jpg
+!uploads/grandes/mec-*.jpg
 !uploads/thumbnails/.gitkeep
 !uploads/grandes/.gitkeep
 !storage/logs/.gitkeep

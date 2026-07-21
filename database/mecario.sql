@@ -469,7 +469,7 @@ INSERT IGNORE INTO autos (marca, modelo, anio, descripcion) VALUES
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-PUE-001', 'Puerta delantera izquierda en buen estado', 'Color gris, pequeños detalles de uso.', 'Buena', 120.00, 3, NULL, NULL, 1
+       'MEC-PUE-001', 'Puerta delantera izquierda en buen estado', 'Color gris, pequeños detalles de uso.', 'Buena', 120.00, 3, 'uploads/thumbnails/mec-pue-001.jpg', 'uploads/grandes/mec-pue-001.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Toyota' AND a.modelo='Corolla' AND a.anio=2015
   AND p.nombre_parte='Puerta'
@@ -479,7 +479,7 @@ WHERE a.marca='Toyota' AND a.modelo='Corolla' AND a.anio=2015
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-MOT-002', 'Motor completo revisado', 'Motor probado, requiere instalación por técnico.', 'Buena', 950.00, 1, NULL, NULL, 1
+       'MEC-MOT-002', 'Motor completo revisado', 'Motor probado, requiere instalación por técnico.', 'Buena', 950.00, 1, 'uploads/thumbnails/mec-mot-002.jpg', 'uploads/grandes/mec-mot-002.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Honda' AND a.modelo='Civic' AND a.anio=2017
   AND p.nombre_parte='Motor'
@@ -489,7 +489,7 @@ WHERE a.marca='Honda' AND a.modelo='Civic' AND a.anio=2017
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-RET-003', 'Retrovisor lateral derecho', 'Carcasa negra, espejo intacto.', 'Excelente', 45.00, 5, NULL, NULL, 1
+       'MEC-RET-003', 'Retrovisor lateral derecho', 'Carcasa negra, espejo intacto.', 'Excelente', 45.00, 5, 'uploads/thumbnails/mec-ret-003.jpg', 'uploads/grandes/mec-ret-003.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Hyundai' AND a.modelo='Accent' AND a.anio=2018
   AND p.nombre_parte='Retrovisor'
@@ -501,84 +501,84 @@ WHERE a.marca='Hyundai' AND a.modelo='Accent' AND a.anio=2018
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-VID-004', 'Vidrio lateral delantero', 'Vidrio sin grietas, listo para instalación.', 'Excelente', 65.00, 4, NULL, NULL, 1
+       'MEC-VID-004', 'Vidrio lateral delantero', 'Vidrio sin grietas, listo para instalación.', 'Excelente', 65.00, 4, 'uploads/thumbnails/mec-vid-004.jpg', 'uploads/grandes/mec-vid-004.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Nissan' AND a.modelo='Sentra' AND a.anio=2016 AND p.nombre_parte='Vidrio' AND s.codigo='B' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-CAP-005', 'Capó delantero original', 'Pintura roja con detalles leves de uso.', 'Buena', 180.00, 2, NULL, NULL, 1
+       'MEC-CAP-005', 'Capó delantero original', 'Pintura roja con detalles leves de uso.', 'Buena', 180.00, 2, 'uploads/thumbnails/mec-cap-005.jpg', 'uploads/grandes/mec-cap-005.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Kia' AND a.modelo='Rio' AND a.anio=2019 AND p.nombre_parte='Capó' AND s.codigo='A' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-DEF-006', 'Defensa trasera completa', 'Incluye soportes principales.', 'Buena', 135.00, 2, NULL, NULL, 1
+       'MEC-DEF-006', 'Defensa trasera completa', 'Incluye soportes principales.', 'Buena', 135.00, 2, 'uploads/thumbnails/mec-def-006.jpg', 'uploads/grandes/mec-def-006.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Mazda' AND a.modelo='3' AND a.anio=2014 AND p.nombre_parte='Defensa' AND s.codigo='A' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-FAR-007', 'Faro delantero derecho', 'Mica transparente y conectores completos.', 'Excelente', 90.00, 3, NULL, NULL, 1
+       'MEC-FAR-007', 'Faro delantero derecho', 'Mica transparente y conectores completos.', 'Excelente', 90.00, 3, 'uploads/thumbnails/mec-far-007.jpg', 'uploads/grandes/mec-far-007.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Ford' AND a.modelo='Escape' AND a.anio=2016 AND p.nombre_parte='Faro' AND s.codigo='D' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-RAD-008', 'Radiador en buen estado', 'Probado sin fugas visibles.', 'Buena', 110.00, 2, NULL, NULL, 1
+       'MEC-RAD-008', 'Radiador en buen estado', 'Probado sin fugas visibles.', 'Buena', 110.00, 2, 'uploads/thumbnails/mec-rad-008.jpg', 'uploads/grandes/mec-rad-008.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Chevrolet' AND a.modelo='Spark' AND a.anio=2020 AND p.nombre_parte='Radiador' AND s.codigo='C' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-CAJ-009', 'Caja de cambios automática', 'Unidad usada, requiere revisión preventiva antes de instalar.', 'Regular', 620.00, 1, NULL, NULL, 1
+       'MEC-CAJ-009', 'Caja de cambios automática', 'Unidad usada, requiere revisión preventiva antes de instalar.', 'Regular', 620.00, 1, 'uploads/thumbnails/mec-caj-009.jpg', 'uploads/grandes/mec-caj-009.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Suzuki' AND a.modelo='Swift' AND a.anio=2018 AND p.nombre_parte='Caja de cambios' AND s.codigo='C' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-LLA-010', 'Llanta 17 pulgadas', 'Neumático con vida útil aproximada del 70%.', 'Buena', 55.00, 6, NULL, NULL, 1
+       'MEC-LLA-010', 'Llanta 17 pulgadas', 'Neumático con vida útil aproximada del 70%.', 'Buena', 55.00, 6, 'uploads/thumbnails/mec-lla-010.jpg', 'uploads/grandes/mec-lla-010.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Toyota' AND a.modelo='Hilux' AND a.anio=2017 AND p.nombre_parte='Llanta' AND s.codigo='E' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-PUE-011', 'Puerta trasera derecha', 'Incluye manigueta y mecanismo interno.', 'Buena', 145.00, 2, NULL, NULL, 1
+       'MEC-PUE-011', 'Puerta trasera derecha', 'Incluye manigueta y mecanismo interno.', 'Buena', 145.00, 2, 'uploads/thumbnails/mec-pue-011.jpg', 'uploads/grandes/mec-pue-011.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Honda' AND a.modelo='Civic' AND a.anio=2017 AND p.nombre_parte='Puerta' AND s.codigo='A' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-RET-012', 'Retrovisor lateral izquierdo', 'Ajuste manual, carcasa blanca.', 'Buena', 38.00, 4, NULL, NULL, 1
+       'MEC-RET-012', 'Retrovisor lateral izquierdo', 'Ajuste manual, carcasa blanca.', 'Buena', 38.00, 4, 'uploads/thumbnails/mec-ret-012.jpg', 'uploads/grandes/mec-ret-012.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Chevrolet' AND a.modelo='Spark' AND a.anio=2020 AND p.nombre_parte='Retrovisor' AND s.codigo='B' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-FAR-013', 'Faro trasero izquierdo', 'Completo con base y conectores.', 'Excelente', 72.00, 3, NULL, NULL, 1
+       'MEC-FAR-013', 'Faro trasero izquierdo', 'Completo con base y conectores.', 'Excelente', 72.00, 3, 'uploads/thumbnails/mec-far-013.jpg', 'uploads/grandes/mec-far-013.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Hyundai' AND a.modelo='Accent' AND a.anio=2018 AND p.nombre_parte='Faro' AND s.codigo='D' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-MOT-014', 'Motor para reparación', 'Unidad incompleta ideal para repuestos internos.', 'Para reparar', 320.00, 1, NULL, NULL, 1
+       'MEC-MOT-014', 'Motor para reparación', 'Unidad incompleta ideal para repuestos internos.', 'Para reparar', 320.00, 1, 'uploads/thumbnails/mec-mot-014.jpg', 'uploads/grandes/mec-mot-014.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Toyota' AND a.modelo='Hilux' AND a.anio=2017 AND p.nombre_parte='Motor' AND s.codigo='C' AND u.usuario='operador';
 
 INSERT IGNORE INTO inventario_partes
     (id_auto, id_parte, id_seccion, creado_por, codigo_inventario, descripcion_corta, observaciones, condicion_pieza, precio, cantidad, thumbnail, imagen_grande, activo)
 SELECT a.id_auto, p.id_parte, s.id_seccion, u.id_usuario,
-       'MEC-VID-015', 'Vidrio trasero', 'Desmontado profesionalmente, sin fisuras.', 'Excelente', 85.00, 2, NULL, NULL, 1
+       'MEC-VID-015', 'Vidrio trasero', 'Desmontado profesionalmente, sin fisuras.', 'Excelente', 85.00, 2, 'uploads/thumbnails/mec-vid-015.jpg', 'uploads/grandes/mec-vid-015.jpg', 1
 FROM autos a, partes p, secciones s, usuarios u
 WHERE a.marca='Ford' AND a.modelo='Escape' AND a.anio=2016 AND p.nombre_parte='Vidrio' AND s.codigo='B' AND u.usuario='operador';
 
