@@ -1,305 +1,357 @@
-# Mecario — Sistema de Inventario y Venta de Autopartes
+````markdown
+# MECARIO — Sistema de Inventario y Venta de Autopartes
 
-Sistema web académico para administrar autopartes, inventario, clientes, ventas, compras, facturación, roles, permisos y trazabilidad criptográfica. Está desarrollado con PHP, MySQL, PDO, TCPDF y una arquitectura MVC.
+## Descripción del proyecto
 
-## 1. Información general y evidencia práctica
+**Mecario** es un sistema web para la gestión de inventario, venta y facturación de autopartes. La aplicación permite administrar vehículos de referencia, tipos de partes, secciones, piezas disponibles, usuarios, roles y permisos. Además, incorpora un catálogo público para clientes, carrito de compras, métodos de pago simulados, opciones de entrega, generación de facturas PDF/A y mecanismos de seguridad y auditoría.
 
-### 1.1. Nombre del proyecto
+El proyecto está desarrollado en **PHP 8.2+** bajo una arquitectura **Modelo-Vista-Controlador (MVC)**, utiliza **MySQL/MariaDB** como gestor de base de datos y **PDO** para el acceso seguro a los datos. Para la generación de facturas se utiliza **TCPDF 7**, instalado mediante Composer.
 
-**Mecario — Sistema de Inventario y Venta de Autopartes**
+---
 
-El sistema permite gestionar autos de origen, tipos de partes, secciones físicas, existencias, imágenes, ventas internas, compras de clientes, entrega, pagos simulados, facturas PDF, reportes y auditoría de operaciones críticas.
+## Integrantes
 
-### 1.2. Integrantes del equipo
+- Luisa de Gracia — 8-1023-924
+- Joselyn Cención — 8-1024-804
+- Andrea Torrento — 20-23-7979
+- Franco Prieto — 20-70-7514
 
+---
 
-| Nombre completo | Cédula | Rol dentro del desarrollo |
-|---|---|---|
-| Luisa de Gracia | 8-1023-924 | Análisis del sistema, Base de Datos, Definición de requerimientos |
-| Joselyn Cención | 8-1024-804 | Frontend, Diseño visual y Estilos CSS |
-| Andrea Torrento | 20-23-7979 | Backend y Lógica del sistema |
-| Franco Prieto   | 20-70-7514 | Base de datos y Gestión de la información |
+## Objetivo
 
-### 1.3. Fecha y versión
-- **Versión:** v1.0.0
-- **Fecha de esta versión:** 20 de julio de 2026
-- **Estado:** versión académica funcional
+Desarrollar un sistema web que permita administrar de forma organizada el inventario y la venta de autopartes, facilitando el control de existencias, la gestión de usuarios y roles, el proceso de compra de los clientes, la generación de facturas y la trazabilidad de operaciones críticas mediante mecanismos de seguridad y auditoría.
 
-### 1.4. Demostración en video
+---
+### Demostración en video
 
-> **URL pendiente:** agregar aquí el enlace público o con permisos de lectura de YouTube o Google Drive.
+> **URL:** https://utpac-my.sharepoint.com/:v:/g/personal/luisa_degracia_utp_ac_pa/IQB2iz7WU0DqRpXhaK8aVnCGAS6Wvf35_dhU2M7WIFpEHaA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=halNc6
 
-El video debe mostrar como mínimo:
+---
 
-1. Instalación o ejecución local del proyecto.
-2. Inicio de sesión con los distintos roles.
-3. Creación, búsqueda y modificación de inventario.
-4. Flujo de carrito, pago, venta y factura PDF.
-5. Validación CSRF, intentos fallidos y bloqueo de cuenta.
-6. Auditoría, firmas RSA y rotación de llaves.
+## Funcionalidades principales
 
-## 2. Requisitos de infraestructura
+### Gestión de acceso y usuarios
 
-### 2.1. Entorno de ejecución
+- Inicio y cierre de sesión.
+- Registro público de clientes.
+- Administración de usuarios internos.
+- Activación, desactivación y desbloqueo de cuentas.
+- Control de roles y permisos.
+- Cambio de contraseña.
+- Bloqueo temporal después de tres intentos fallidos de inicio de sesión.
+- Registro de accesos exitosos y fallidos.
 
-| Componente | Requisito |
-|---|---|
-| PHP | 8.2 o superior |
-| Base de datos | MySQL o MariaDB |
-| Servidor web | Apache con `mod_rewrite` |
-| Entorno recomendado | XAMPP o WampServer |
-| Dependencias PHP | Composer |
-| Extensiones PHP | PDO MySQL, OpenSSL, cURL y mbstring |
-| Librería PDF | TCPDF 7, instalada mediante Composer |
+### Catálogos e inventario
 
-La configuración actual de OpenSSL para XAMPP utiliza:
+- Gestión de autos por marca, modelo y año.
+- Gestión de tipos de partes.
+- Gestión de secciones.
+- Registro y modificación de piezas del inventario.
+- Control de código, descripción, condición, precio y cantidad disponible.
+- Carga de imágenes y miniaturas.
+- Búsqueda y filtrado del inventario.
+- Activación y desactivación de registros.
+- Exportación de información del inventario.
+
+### Catálogo público y compras
+
+- Consulta pública de piezas disponibles.
+- Visualización del detalle de cada pieza.
+- Carrito de compras para clientes autenticados.
+- Actualización de cantidades y eliminación de productos del carrito.
+- Métodos de pago simulados: Yappy, Visa y Mastercard.
+- Métodos de entrega: retiro en local o delivery.
+- Cálculo de ITBMS del 7 %.
+- Historial personal de compras.
+
+> Los métodos de pago implementados forman parte del flujo académico del sistema y no realizan validaciones contra pasarelas bancarias reales.
+
+### Ventas y facturación
+
+- Registro de ventas internas.
+- Disminución automática de las existencias al completar una venta.
+- Consulta del detalle de ventas.
+- Estadísticas y reportes de ventas.
+- Exportación de reportes.
+- Generación y descarga de facturas mediante TCPDF.
+- Generación de facturas en formato PDF/A.
+
+### Comentarios
+
+- Los clientes autenticados pueden registrar comentarios.
+- Los comentarios pueden ser aprobados, ocultados o deshabilitados por usuarios autorizados.
+- Los visitantes pueden consultar únicamente los comentarios publicados y activos.
+
+### Seguridad y auditoría
+
+- Contraseñas almacenadas mediante hash seguro.
+- Consultas preparadas con PDO.
+- Protección CSRF.
+- Validación y sanitización de datos.
+- Registro de intentos de inicio de sesión.
+- Registro de anomalías.
+- Generación de llaves RSA para usuarios internos.
+- Firma de operaciones críticas mediante RSA y SHA-256.
+- Auditoría de operaciones importantes.
+- Rotación de llaves RSA.
+
+---
+
+## Roles del sistema
+
+### Administrador
+
+Posee acceso completo al sistema. Puede gestionar usuarios, roles, permisos, inventario, ventas, seguridad y auditoría.
+
+### Operador
+
+Gestiona catálogos, inventario, ventas, comentarios y otras funciones operativas. No posee acceso completo a la administración de usuarios.
+
+### Cliente
+
+Puede consultar el catálogo, agregar productos al carrito, realizar compras, consultar su historial, descargar facturas y registrar comentarios.
+
+---
+
+## Tecnologías utilizadas
+
+- PHP 8.2+
+- MySQL / MariaDB
+- PDO
+- HTML5
+- CSS3
+- JavaScript
+- Apache
+- Composer
+- TCPDF 7
+- OpenSSL
+- Arquitectura MVC
+
+---
+
+## Requisitos del sistema
+
+Para ejecutar Mecario se requiere:
+
+- PHP 8.2 o superior.
+- Apache.
+- MySQL o MariaDB.
+- Composer.
+- Extensión `pdo_mysql`.
+- OpenSSL.
+- Permisos de escritura en las carpetas de almacenamiento.
+
+Se recomienda utilizar **XAMPP** o **WampServer** para la ejecución local.
+
+---
+
+## Instalación
+
+### 1. Copiar el proyecto
+
+Copiar o descomprimir la carpeta del proyecto dentro del directorio público del servidor local.
+
+Ejemplo con XAMPP:
 
 ```text
-D:/AplicacioneSoftware/Xamp/apache/conf/openssl.cnf
-```
+C:\xampp\htdocs\mecario
+````
 
-Puede cambiarse mediante la opción `security.openssl_config` de [`config/config.php`](config/config.php).
-
-### 2.2. Guía de despliegue rápido
-
-#### 1. Clonar el repositorio
-
-Reemplace la URL de ejemplo por la URL real del repositorio:
-
-```bash
-git clone URL_DEL_REPOSITORIO
-cd mecario
-```
-
-También puede copiar la carpeta directamente dentro de:
+Ejemplo con WampServer:
 
 ```text
-D:\AplicacioneSoftware\Xamp\htdocs\mecario
+C:\wamp64\www\mecario
 ```
 
-#### 2. Instalar las dependencias
+### 2. Instalar las dependencias
+
+Abrir una terminal en la carpeta raíz del proyecto y ejecutar:
 
 ```bash
 composer install
 ```
 
-#### 3. Crear la base de datos y los datos semilla
+### 3. Crear la base de datos
 
-Importe en phpMyAdmin el archivo [`database/mecario.sql`](database/mecario.sql). Este script crea la base de datos `mecario`, sus tablas, relaciones, roles, permisos, usuarios iniciales, catálogos e inventario de prueba.
+1. Iniciar Apache y MySQL.
+2. Abrir phpMyAdmin.
+3. Importar el archivo:
 
-No existe un `backup.sql` separado: [`database/mecario.sql`](database/mecario.sql) es el respaldo completo de instalación y pruebas rápidas.
-
-#### 4. Configurar las credenciales locales
-
-Edite [`config/config.php`](config/config.php) o defina las variables `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER` y `DB_PASSWORD`.
-
-Configuración predeterminada de XAMPP:
-
-```php
-'host' => '127.0.0.1',
-'port' => '3306',
-'name' => 'mecario',
-'user' => 'root',
-'password' => '',
+```text
+database/mecario.sql
 ```
 
-#### 5. Iniciar el sistema
+El script crea la base de datos `mecario`, sus tablas, relaciones y datos iniciales.
 
-Inicie Apache y MySQL y abra:
+### 4. Configurar la conexión
+
+La configuración principal se encuentra en:
+
+```text
+config/config.php
+```
+
+Configuración local utilizada:
+
+```text
+Host: 127.0.0.1
+Puerto: 3306
+Base de datos: mecario
+Usuario: root
+Contraseña: vacía
+```
+
+### 5. Instalar y configurar OpenSSL
+
+Debe verificarse la configuración de OpenSSL utilizada por el sistema para la generación de llaves y certificados.
+
+### 6. Ejecutar el sistema
+
+Con Apache y MySQL activos, abrir en el navegador:
 
 ```text
 http://localhost/mecario/
 ```
 
-Si las rutas internas muestran un error 404, active `rewrite_module` en Apache y reinicie el servicio.
+---
 
-#### 6. Permisos de almacenamiento
+## Credenciales de prueba
 
-El proceso de Apache necesita escritura en:
-
-```text
-storage/keys/       Llaves RSA privadas cifradas de usuarios internos
-storage/facturas/   Facturas PDF generadas
-storage/logs/       Registros de errores
-uploads/            Imágenes del inventario
-```
-
-## 3. Matriz de roles y credenciales de prueba
-
-| Rol | Usuario de acceso | Contraseña | Permisos principales |
-|---|---|---|---|
-| Administrador | `admin` | `root2514` | Control total, usuarios, roles, seguridad, auditoría, rotación de llaves, inventario y ventas. |
-| Operador | `operador` | `root2514` | Gestión operativa, inventario, ventas, seguridad y consulta de auditoría; sin administración de usuarios ni rotación de llaves. |
-| Cliente | Registro público | La elegida al registrarse | Catálogo, carrito, compra, factura, historial y comentarios. |
-
-Las cuentas iniciales también utilizan los correos `admin@mecario.local` y `operador@mecario.local`, pero el formulario de acceso solicita el nombre de usuario.
-
-> Estas credenciales son exclusivamente para demostración. Deben cambiarse antes de publicar el sistema.
-
-## 4. Directrices técnicas y reglas del backend
-
-### 4.1. Control de acceso seguro
-
-La autenticación está implementada principalmente en [`app/Controllers/AuthController.php`](app/Controllers/AuthController.php), [`app/Models/Usuario.php`](app/Models/Usuario.php), [`app/Services/PasswordHashService.php`](app/Services/PasswordHashService.php) y [`app/Core/Session.php`](app/Core/Session.php).
-
-- Las contraseñas se almacenan con `password_hash()` y se verifican con `password_verify()`.
-- El registro exige al menos 8 caracteres. Actualmente el formulario admite hasta 100 caracteres; si la rúbrica exige exactamente de 8 a 12, debe ajustarse el máximo antes de la entrega.
-- Después del tercer intento fallido la cuenta se bloquea durante 15 minutos.
-- Cada intento conserva usuario, dirección IP, fecha, resultado y detalle en `login_logs`.
-- Los accesos anómalos se registran en `anomalias_seguridad`.
-- Los roles y permisos se comprueban mediante la sesión y los métodos de autorización de los controladores.
-- Las cuentas internas generan una identidad RSA propia; las cuentas con únicamente el rol Cliente no generan llaves RSA.
-
-### 4.2. Mitigación OWASP y principio DRY
-
-La protección CSRF se centraliza en [`app/Helpers/Csrf.php`](app/Helpers/Csrf.php). Los formularios POST incluyen `Csrf::campo()` y los controladores validan el token antes de modificar datos. Una petición externa sin token válido, por ejemplo desde Postman, no puede ejecutar normalmente estas operaciones.
-
-Otras medidas implementadas:
-
-- PDO y parámetros enlazados para reducir el riesgo de inyección SQL.
-- Escape de salida HTML mediante [`app/Helpers/Sanitizer.php`](app/Helpers/Sanitizer.php).
-- Validaciones del backend independientes de los atributos HTML.
-- Cookies de sesión `HttpOnly` y política `SameSite=Lax`.
-- Regeneración de sesión y token CSRF después del inicio de sesión.
-- Archivos privados almacenados fuera de `public/`.
-
-La separación DRY/MVC se distribuye así:
+### Administrador
 
 ```text
-app/Controllers/   Coordinación de solicitudes y autorización
-app/Models/        Consultas y persistencia en MySQL
-app/Services/      Seguridad, criptografía, facturación y cálculos
-app/Helpers/       CSRF, sanitización, validación, URL e imágenes
-app/Core/          Base de datos, router, sesión, vistas y errores
-app/Views/         Presentación de las pantallas
-routes/            Definición de rutas por módulo
+Usuario: admin
+Contraseña: root2514
 ```
 
-### 4.3. Sello de integridad y firma digital
-
-La integridad de operaciones críticas se implementa en:
-
-- [`app/Services/AuditTrailService.php`](app/Services/AuditTrailService.php): construye el contenido canónico de la acción y calcula su SHA-256.
-- [`app/Services/KeyManager.php`](app/Services/KeyManager.php): genera un par RSA por usuario interno, cifra la llave privada y conserva la llave pública y su huella.
-- [`app/Services/RsaSignatureService.php`](app/Services/RsaSignatureService.php): firma y verifica el contenido mediante RSA con SHA-256.
-- [`app/Models/Auditoria.php`](app/Models/Auditoria.php): consulta registros y verifica evidencias históricas.
-
-Flujo simplificado:
-
-1. El backend reúne usuario, módulo, acción, entidad, datos, IP y fecha.
-2. Serializa el contenido como JSON.
-3. Calcula un hash SHA-256.
-4. Firma el contenido con la llave RSA privada cifrada del usuario interno.
-5. Guarda JSON, hash, firma Base64, usuario, llave, IP y fecha en `auditoria_firmada`.
-6. La pantalla de auditoría vuelve a calcular y verificar la firma con la llave pública registrada.
-
-Las llaves privadas se guardan cifradas en `storage/keys/`; las llaves públicas, huellas y estados se almacenan en `claves_usuario`. Al rotar una llave, la anterior se desactiva pero se conserva para verificar firmas históricas.
-
-Las facturas PDF se generan mediante [`app/Services/InvoicePdfService.php`](app/Services/InvoicePdfService.php), se almacenan en `storage/facturas/` y registran una huella SHA-256. La generación del PDF no depende de certificados OpenSSL; OpenSSL se utiliza en la auditoría RSA de las acciones críticas.
-
-## 5. Manual de usuario operativo
-
-### Video del proyecto
-
-> **URL pendiente:** agregar aquí el mismo enlace indicado en la sección 1.4.
-
-### 5.1. Guía visual y flujo de pantallas
-
-#### A. Iniciar sesión
-
-1. Abra `http://localhost/mecario/`.
-2. Seleccione **Iniciar sesión**.
-3. Utilice `admin` o `operador` con la contraseña de prueba.
-4. El sistema cargará el panel de acuerdo con los permisos del rol.
-
-![Captura pendiente: pantalla de inicio de sesión](docs/screenshots/01-login.png)
-
-#### B. Agregar una pieza
-
-1. Ingrese al módulo **Inventario**.
-2. Presione **Nueva pieza**.
-3. Seleccione auto, parte y sección.
-4. Complete código, precio, cantidad, condición y descripción.
-5. Opcionalmente cargue miniatura e imagen grande.
-6. Presione **Guardar**.
-
-![Captura pendiente: formulario de inventario](docs/screenshots/02-inventario-crear.png)
-
-#### C. Buscar inventario
-
-1. Abra **Inventario** o el **Catálogo**.
-2. Escriba código, pieza, marca o modelo en el campo de búsqueda.
-3. Aplique los filtros disponibles.
-4. Presione **Buscar** o **Filtrar**.
-5. Puede limpiar los criterios para volver al listado completo.
-
-![Captura pendiente: búsqueda y filtros](docs/screenshots/03-inventario-buscar.png)
-
-#### D. Modificar una pieza
-
-1. Localice la pieza en el listado.
-2. Presione **Editar**.
-3. Modifique existencias, precio, ubicación, datos o imágenes.
-4. Presione **Guardar**.
-5. También puede activar o desactivar la pieza desde las acciones del listado.
-
-![Captura pendiente: edición de inventario](docs/screenshots/04-inventario-editar.png)
-
-#### E. Realizar una compra como cliente
-
-1. Registre una cuenta desde la pantalla pública o inicie sesión como Cliente.
-2. Abra el catálogo y seleccione una pieza.
-3. Indique la cantidad y agréguela al carrito.
-4. Revise el carrito y continúe al pago.
-5. Seleccione retiro o delivery y el método de pago simulado.
-6. Confirme la compra y descargue la factura PDF.
-
-![Captura pendiente: carrito y pago](docs/screenshots/05-carrito-pago.png)
-
-#### F. Consultar seguridad y auditoría
-
-1. Inicie sesión como Administrador.
-2. Abra **Seguridad** para consultar intentos y anomalías.
-3. Abra **Auditoría** para revisar hash, firma, IP, fecha y validez.
-4. Si posee el permiso correspondiente, puede rotar una llave RSA sin eliminar la evidencia histórica.
-
-![Captura pendiente: auditoría firmada](docs/screenshots/06-auditoria.png)
-
-## Funcionalidades adicionales
-
-- CRUD de autos, partes, secciones, inventario, usuarios y roles.
-- Catálogo público con imágenes y filtros.
-- Carrito con múltiples productos y cantidades.
-- Retiro en local o delivery.
-- Pago académico mediante Yappy, Visa o Mastercard.
-- Descuento transaccional de existencias.
-- Cálculo centralizado de subtotal, ITBMS del 7 %, entrega y total.
-- Historial de compras y ventas.
-- Facturas PDF descargables con huella SHA-256.
-- Exportación de inventario y ventas a Excel.
-- Estadísticas diarias, mensuales, por pago, categoría y producto.
-- Moderación de comentarios.
-
-## Estructura principal del repositorio
+### Operador
 
 ```text
-app/                 Código MVC y servicios
-config/              Configuración del sistema
-database/            Instalación SQL y datos semilla
-public/              Front controller, CSS, JavaScript e imágenes públicas
-routes/              Rutas por módulo
-storage/             Logs, llaves RSA y facturas
-uploads/             Imágenes cargadas del inventario
-vendor/              Dependencias instaladas por Composer
-composer.json        Dependencias PHP del proyecto
-README.md             Documentación general y manual operativo
+Usuario: operador
+Contraseña: root2514
 ```
 
-## Notas antes de la entrega
+Las credenciales anteriores son utilizadas únicamente para pruebas y demostración académica.
 
-- Completar nombres, cédulas y responsabilidades del equipo.
-- Sustituir la URL del repositorio.
-- Agregar el enlace del video con permisos de acceso.
-- Crear `docs/screenshots/` y añadir las seis capturas referenciadas.
-- Si la evaluación exige un máximo de 12 caracteres para contraseñas, actualizar la validación actual y sus formularios.
-- No utilizar las credenciales de prueba en producción.
+---
+
+## Estructura principal del proyecto
+
+```text
+MECARIOAPP-1.0-main/
+│
+├── app/
+│   ├── Controllers/
+│   ├── Core/
+│   ├── Helpers/
+│   ├── Interfaces/
+│   ├── Models/
+│   ├── Services/
+│   └── Views/
+│
+├── config/
+│   └── config.php
+│
+├── database/
+│   └── mecario.sql
+│
+├── public/
+│   ├── assets/
+│   ├── .htaccess
+│   └── index.php
+│
+├── routes/
+│
+├── storage/
+│   ├── certificates/
+│   ├── facturas/
+│   ├── keys/
+│   └── logs/
+│
+├── uploads/
+│   ├── grandes/
+│   └── thumbnails/
+│
+├── composer.json
+├── composer.lock
+└── index.php
+```
+
+---
+
+## Base de datos
+
+La base de datos principal se denomina **mecario**.
+
+Entre sus tablas principales se encuentran:
+
+```text
+roles
+permisos
+rol_permiso
+usuarios
+usuario_rol
+login_logs
+anomalias
+claves_usuario
+auditoria_firmada
+autos
+partes
+secciones
+inventario_partes
+ventas
+venta_detalles
+facturas
+comentarios
+```
+
+---
+
+## Flujo básico de uso
+
+### Cliente
+
+1. Accede al catálogo público.
+2. Busca una pieza.
+3. Consulta el detalle.
+4. Se registra o inicia sesión.
+5. Agrega piezas al carrito.
+6. Modifica las cantidades si es necesario.
+7. Selecciona el método de entrega.
+8. Selecciona el método de pago.
+9. Confirma la compra.
+10. El sistema registra la venta y actualiza el inventario.
+11. El cliente consulta su historial y descarga su factura.
+
+### Operador
+
+1. Inicia sesión.
+2. Gestiona autos, partes y secciones.
+3. Registra y modifica piezas.
+4. Consulta las existencias.
+5. Registra ventas internas.
+6. Consulta estadísticas y reportes.
+7. Modera comentarios.
+
+### Administrador
+
+El administrador puede realizar las operaciones generales del sistema y adicionalmente gestionar usuarios, roles, permisos, seguridad, auditoría y llaves RSA.
+
+---
+
+## Consideraciones de seguridad
+
+* Las contraseñas son almacenadas mediante hash.
+* Se utilizan consultas preparadas con PDO.
+* Los formularios críticos utilizan protección CSRF.
+* El sistema registra intentos fallidos de inicio de sesión.
+* Se implementan mecanismos de auditoría.
+* Las operaciones críticas pueden contar con evidencia firmada mediante RSA y SHA-256.
+* Las credenciales de prueba deben cambiarse antes de utilizar el sistema fuera de un entorno académico.
+* Los métodos de pago utilizados son simulados y no procesan transacciones bancarias reales.
+
+---
+### 1.4. Demostración en video
+
+> **URL pendiente:** agregar aquí el enlace público o con permisos de lectura de YouTube o Google Drive.
